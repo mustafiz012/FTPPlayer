@@ -15,7 +15,7 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.freak.musta.ftp.video.player.R;
-import com.freak.musta.ftp.video.player.utils.SingletonInteraction;
+import com.freak.musta.ftp.video.player.utils.Singling;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.musta.libraries.magic_dialog.CustomDialog;
 
@@ -59,12 +59,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(WebView view, int loadingProgress) {
                 if (loadingProgress >= 60) {
-                    SingletonInteraction.getInstance().dismissProgressBar(MainActivity.this);
+                    Singling.getInstance().dismissProgressBar(MainActivity.this);
                     //wv_web_viewer.loadUrl("javascript:document.getElementsByClassName('slicknav_menu').style.display = 'none'");
                     wv_web_viewer.setVisibility(View.VISIBLE);
                 } else {
-                    if (!SingletonInteraction.getInstance().isProgressBarShowing())
-                        SingletonInteraction.getInstance().startProgressBar(MainActivity.this, "Loading...");
+                    if (!Singling.getInstance().isProgressBarShowing())
+                        Singling.getInstance().startProgressBar(MainActivity.this, "Loading...");
                 }
             }
         });
@@ -183,16 +183,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        /*int urlSize = previousUrlList.size();
-        if (urlSize > 1) {
-            mUrl = previousUrlList.get(urlSize - 2).toString();
-            wv_web_viewer.setVisibility(View.GONE);
-            wv_web_viewer.loadUrl(mUrl);
-            previousUrlList.remove(urlSize-1);
-            return;
-        }
-        super.onBackPressed();*/
-        SingletonInteraction.getInstance().setApplicationExitWarningDialog(this, getApplicationContext());
+        Singling.getInstance().setApplicationExitWarningDialog(this, getApplicationContext());
     }
 
     @Override
@@ -219,7 +210,8 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_change_url) {
+
             return true;
         }
 

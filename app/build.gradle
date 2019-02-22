@@ -36,4 +36,5 @@ dependencies {
     /*third party*/
     implementation 'cn.jzvd:jiaozivideoplayer:6.4.1'
     implementation 'com.github.mustafiz012:MagicDialog:v1.2'
+    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
 }

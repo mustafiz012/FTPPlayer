@@ -12,17 +12,17 @@ import android.widget.Toast;
 
 import com.musta.libraries.magic_dialog.CustomDialog;
 
-public class SingletonInteraction {
+public class Singling {
 
-    private static final SingletonInteraction instance = new SingletonInteraction();
+    private static final Singling instance = new Singling();
     private CustomDialog mCustomDialog;
     private ProgressDialog mProgressDialog;
     private boolean doubleBackToExitPressedOnce = false;
 
-    private SingletonInteraction() {
+    private Singling() {
     }
 
-    public static SingletonInteraction getInstance() {
+    public static Singling getInstance() {
         return instance;
     }
 
