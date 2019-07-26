@@ -3,7 +3,6 @@ package com.freak.musta.ftp.video.player.utils;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
@@ -41,12 +40,7 @@ public class Singling {
         mCustomDialog = new CustomDialog(context);
         mCustomDialog.setTitle("Connectivity Status");
         mCustomDialog.setMessage("No Internet Connection!");
-        mCustomDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                mCustomDialog.dismiss();
-            }
-        });
+        mCustomDialog.setPositiveButton("Ok", (dialogInterface, i) -> mCustomDialog.dismiss());
         mCustomDialog.show();
     }
 
@@ -54,12 +48,7 @@ public class Singling {
         mCustomDialog = new CustomDialog(context);
         mCustomDialog.setTitle("Warning!");
         mCustomDialog.setMessage("" + message);
-        mCustomDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                mCustomDialog.dismiss();
-            }
-        });
+        mCustomDialog.setPositiveButton("Ok", (dialogInterface, i) -> mCustomDialog.dismiss());
         mCustomDialog.show();
     }
 
@@ -71,12 +60,7 @@ public class Singling {
             doubleBackToExitPressedOnce = true;
             Toast.makeText(context, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
         }
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce = false;
-            }
-        }, 2000);
+        new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
     }
 
     public void showSimpleMessageDialog(Context context, String title, String message, String positionButtonName) {
@@ -84,12 +68,7 @@ public class Singling {
         if (title != null)
             mCustomDialog.setTitle("" + title);
         mCustomDialog.setMessage("" + message);
-        mCustomDialog.setPositiveButton("" + positionButtonName, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                mCustomDialog.dismiss();
-            }
-        });
+        mCustomDialog.setPositiveButton("" + positionButtonName, (dialogInterface, i) -> mCustomDialog.dismiss());
         mCustomDialog.show();
     }
 
@@ -106,7 +85,7 @@ public class Singling {
         }
     }
 
-    public void dismissProgressBar(Context context) {
+    public void dismissProgressBar() {
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.dismiss();
         }
